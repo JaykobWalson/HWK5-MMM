@@ -14,8 +14,8 @@ extern double **matrix4;
 
 typedef struct thread_args {
 	int tid; //thread id
-	int row_start;
-	int row_end;
+	int row_start;  //start of row
+	int row_end;  //end of row
  } thread_args;
 void mmm_init();
 void mmm_reset(double **);

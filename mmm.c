@@ -50,17 +50,17 @@ void mmm_reset(double **matrix) {
  * Free up memory allocated to all matrices
  */
 void mmm_freeup() {
-	// for (int i = 0; i < size; i++) {	
-    // 	free(matrix1[i]);
-	// 	free(matrix2[i]);
-	// 	free(matrix3[i]);
-	// 	free(matrix4[i]);
+	for (int i = 0; i < size; i++) {	
+    	free(matrix1[i]);
+		free(matrix2[i]);
+		free(matrix3[i]);
+		free(matrix4[i]);
 
-	// 	matrix1[i] = NULL;
-	// 	matrix2[i] = NULL;
-	// 	matrix3[i] = NULL;
-	// 	matrix4[i] = NULL;
-	// }
+		matrix1[i] = NULL;
+		matrix2[i] = NULL;
+		matrix3[i] = NULL;
+		matrix4[i] = NULL;
+	}
 
  
 }
@@ -83,7 +83,8 @@ void mmm_seq() {
  */
 void *mmm_par(void *args) {
 	thread_args *params = (thread_args*)args;
-	for(int i = params->row_start; i < params->row_end; i++){
+	printf("tid=%d, start=%d, end=%d size=%d\n", params->tid, params->row_start, params->row_end, size);
+	for(int i = params->row_start; i <= params->row_end; i++){
 		for(int j = 0; j < size; j++){
 			for(int k = 0; k < size; k++){
 				matrix4[i][j] += matrix1[i][k] * matrix2[k][j];
